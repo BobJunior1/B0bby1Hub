@@ -1,1 +1,981 @@
+print("Script loading..")
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local Window = Rayfield:CreateWindow({
+   Name = "B0bby hub (BETA)",
+   Icon = 99972211610543, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "B0bby hub",
+   LoadingSubtitle = "Loading..",
+   Theme = "AmberGlow",
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true,
+   KeySettings = {
+      Title = "Is bob cool?",
+      Subtitle = "Yes or no?",
+      Note = "Hint: Yes", -- Use this to tell the user how to get a key
+      FileName = "B0bbyKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Yes"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("UNDER MAINTENANCE")
+
+local Button = Tab:CreateButton({
+   Name = "Esp twisteds",
+   Callback = function() 
+local monsterNames = {
+    "AstroMonster",
+    "BobetteMonster",
+    "BrightneyMonster",
+    "CoalMonster",
+    "ConnieMonster",
+    "CosmoMonster",
+    "DandyMonster",
+    "FinnMonster",
+    "FlutterMonster",
+    "GigiMonster",
+    "GingerMonster",
+    "GlistenMonster",
+    "GoobMonster",
+    "LooeyMonster",
+    "PebbleMonster",
+    "PoppyMonster",
+    "RazzleDazzleMonster",
+    "RodgerMonster",
+    "RudieMonster",
+    "ScrapsMonster",
+    "ShellyMonster",
+    "ShrimpoMonster",
+    "SproutMonster",
+    "TeaganMonster",
+    "TishaMonster",
+    "ToodlesMonster",
+    "VeeMonster",
+    "BoxtenMonster"
+}
+
+local specialMonsters = {
+    "ShellyMonster",
+    "SproutMonster",
+    "VeeMonster",
+    "AstroMonster",
+    "BobetteMonster",
+    "DandyMonster",
+    "PebbleMonster"
+}
+
+local function createOutline(item)
+    local Highlight = Instance.new('Highlight')
+    Highlight.Parent = item
+    Highlight.Adornee = item
+    Highlight.OutlineColor = Color3.new(1, 1, 1)
+    if table.find(specialMonsters, item.Name) then
+        Highlight.FillColor = Color3.fromRGB(128, 0, 128) -- Purple for special monsters
+    else
+        Highlight.FillColor = Color3.new(1, 0, 0) -- Red for other monsters
+    end
+    Highlight.FillTransparency = 0.5
+end
+
+local function applyESP(item)
+    if item:IsA('Model') and item.Parent.Name == 'Monsters' and table.find(monsterNames, item.Name) then
+        createOutline(item)
+    end
+end
+
+-- Initial application of ESP to existing monsters
+for _, v in ipairs(game.Workspace:GetDescendants()) do
+    applyESP(v)
+end
+
+-- Event listeners to apply ESP when new monsters are added or removed
+game.Workspace.DescendantAdded:Connect(function(descendant)
+    applyESP(descendant)
+end)
+
+game.Workspace.DescendantRemoving:Connect(function(descendant)
+    if descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
+        local highlight = descendant:FindFirstChildOfClass('Highlight')
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+end)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Esp twisteds(Billboard)",
+   Callback = function() 
+local monsterNames = {
+    "AstroMonster",
+    "BobetteMonster",
+    "BrightneyMonster",
+    "CoalMonster",
+    "ConnieMonster",
+    "CosmoMonster",
+    "DandyMonster",
+    "FinnMonster",
+    "FlutterMonster",
+    "GigiMonster",
+    "GingerMonster",
+    "GlistenMonster",
+    "GoobMonster",
+    "LooeyMonster",
+    "PebbleMonster",
+    "PoppyMonster",
+    "RazzleDazzleMonster",
+    "RodgerMonster",
+    "RudieMonster",
+    "ScrapsMonster",
+    "ShellyMonster",
+    "ShrimpoMonster",
+    "SproutMonster",
+    "TeaganMonster",
+    "TishaMonster",
+    "ToodlesMonster",
+    "VeeMonster",
+    "BoxtenMonster"
+}
+
+local specialMonsters = {
+    "ShellyMonster",
+    "SproutMonster",
+    "VeeMonster",
+    "AstroMonster",
+    "BobetteMonster",
+    "DandyMonster",
+    "PebbleMonster"
+}
+
+local function createText(item, text)
+    local BillboardGui = Instance.new('BillboardGui')
+    BillboardGui.Parent = item
+    BillboardGui.Adornee = item
+    BillboardGui.Size = UDim2.new(0, 200, 0, 50)
+    BillboardGui.StudsOffset = Vector3.new(4, 0, 0)  -- Position exactly at the monster
+    BillboardGui.AlwaysOnTop = true
+
+    local TextLabel = Instance.new('TextLabel')
+    TextLabel.Parent = BillboardGui
+    TextLabel.Size = UDim2.new(0.5, 0, 0.5, 0)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Font = Enum.Font.GothamBlack
+    if table.find(specialMonsters, item.Name) then
+        TextLabel.TextColor3 = Color3.fromRGB(128, 0, 128) -- Purple text color for special monsters
+    else
+        TextLabel.TextColor3 = Color3.new(1, 1, 1) -- White text color for other monsters
+    end
+    TextLabel.TextScaled = true
+    TextLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
+    TextLabel.TextStrokeTransparency = 0
+    TextLabel.Text = text
+end
+
+local function applyESP(item)
+    if item:IsA('Model') and item.Parent.Name == 'Monsters' and table.find(monsterNames, item.Name) then
+        createText(item, item.Name)
+    end
+end
+
+-- Initial application of ESP to existing monsters
+for _, v in ipairs(game.Workspace:GetDescendants()) do
+    applyESP(v)
+end
+
+-- Event listeners to apply ESP when new monsters are added or removed
+game.Workspace.DescendantAdded:Connect(function(descendant)
+    applyESP(descendant)
+end)
+
+game.Workspace.DescendantRemoving:Connect(function(descendant)
+    if descendant:IsA('BillboardGui') then
+        descendant:Destroy()
+    end
+end)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "esp Items",
+   Callback = function()
+local itemNames = {
+    "Chocolate",
+    "Gumball",
+    "Pop",
+    "ProteinBar",
+    "SpeedCandy",
+    "StealthCandy",
+    "SkillCheckCandy",
+    "EnigmaCandy",
+    "Stopwatch",
+    "Instructions",
+    "Bandage",
+    "ChocolateBox",
+    "PopBottle",
+    "JumperCable",
+    "AirHorn",
+    "SmokeBomb",
+    "HealthKit",
+    "Valve",
+    "EjectButton",
+    "ResearchCapsule",
+    "Tape",
+    "Ornament"
+}
+
+local specialItems = {
+    "Valve",
+    "EjectButton",
+    "HealthKit",
+    "SmokeBomb",
+    "JumperCable",
+    "PopBottle",
+    "Bandage"
+}
+
+local function createOutline(item)
+    if item:FindFirstChildOfClass('Highlight') then return end  -- Check if Highlight already exists
+
+    -- Create Highlight to ensure visibility through walls
+    local highlight = Instance.new('Highlight')
+    highlight.Parent = item
+    highlight.Adornee = item
+    highlight.OutlineColor = Color3.new(1, 1, 1)
+    if table.find(specialItems, item.Name) then
+        highlight.FillColor = Color3.fromRGB(128, 0, 128) -- Purple for special items
+    else
+        highlight.FillColor = Color3.new(0, 1, 0) -- Green for other items
+    end
+    highlight.FillTransparency = 0.5
+end
+
+local function applyESP(item)
+    if item:IsA('Model') and item.Parent and item.Parent.Name == 'Items' and table.find(itemNames, item.Name) then
+        createOutline(item)
+    end
+end
+
+-- Initial application of ESP to existing items
+for _, item in ipairs(game.Workspace:GetDescendants()) do
+    applyESP(item)
+end
+
+-- Event listeners to apply ESP when new items are added or removed
+game.Workspace.DescendantAdded:Connect(function(descendant)
+    applyESP(descendant)
+end)
+
+game.Workspace.DescendantRemoving:Connect(function(descendant)
+    if descendant:IsA('Highlight') then
+        descendant:Destroy()
+    end
+end)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "esp Items(Billboard)",
+   Callback = function()
+local itemNames = {
+    "Chocolate",
+    "Gumball",
+    "Pop",
+    "ProteinBar",
+    "SpeedCandy",
+    "StealthCandy",
+    "SkillCheckCandy",
+    "EnigmaCandy",
+    "Stopwatch",
+    "Instructions",
+    "Bandage",
+    "ChocolateBox",
+    "PopBottle",
+    "JumperCable",
+    "AirHorn",
+    "SmokeBomb",
+    "HealthKit",
+    "Valve",
+    "EjectButton",
+    "ResearchCapsule",
+    "Tape",
+    "Ornament"
+}
+
+local specialItems = {
+    "Valve",
+    "EjectButton",
+    "HealthKit",
+    "SmokeBomb",
+    "JumperCable",
+    "PopBottle",
+    "Bandage"
+}
+
+local function createTextLabel(item)
+    if item:FindFirstChildOfClass('BillboardGui') then return end  -- Check if BillboardGui already exists
+
+    -- Create BillboardGui
+    local billboardGui = Instance.new('BillboardGui')
+    billboardGui.Parent = item
+    billboardGui.Adornee = item
+    billboardGui.Size = UDim2.new(0, 100, 0, 50) -- Adjust size as needed
+    billboardGui.AlwaysOnTop = true
+
+    -- Create TextLabel
+    local textLabel = Instance.new('TextLabel')
+    textLabel.Parent = billboardGui
+    textLabel.Size = UDim2.new(1, 0, 1, 0) -- Adjust size to fit BillboardGui
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = item.Name
+    if table.find(specialItems, item.Name) then
+        textLabel.TextColor3 = Color3.fromRGB(128, 0, 128) -- Purple text color for special items
+    else
+        textLabel.TextColor3 = Color3.new(0, 1, 0) -- Green text color for other items
+    end
+    textLabel.TextStrokeTransparency = 0 -- Outline text for better readability
+    textLabel.TextScaled = true
+    textLabel.Font = Enum.Font.FredokaOne
+end
+
+local function applyESP(item)
+    if item:IsA('Model') and item.Parent and item.Parent.Name == 'Items' and table.find(itemNames, item.Name) then
+        createTextLabel(item)
+    end
+end
+
+-- Initial application of ESP to existing items
+for _, item in ipairs(game.Workspace:GetDescendants()) do
+    applyESP(item)
+end
+
+-- Event listeners to apply ESP when new items are added or removed
+game.Workspace.DescendantAdded:Connect(function(descendant)
+    applyESP(descendant)
+end)
+
+game.Workspace.DescendantRemoving:Connect(function(descendant)
+    if descendant:IsA('BillboardGui') then
+        descendant:Destroy()
+    end
+end)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "esp Generators",
+   Callback = function()
+    local function createOutline(item)
+    -- Create Highlight to ensure visibility through walls
+    local Highlight = Instance.new('Highlight')
+    Highlight.Parent = item
+    Highlight.Adornee = item
+    Highlight.OutlineColor = Color3.new(1, 1, 1)
+    Highlight.FillColor = Color3.new(1, 0, 0)
+    Highlight.FillTransparency = 0.5
+end
+
+local function applyESP(item)
+    if item:IsA('Model') and item.Name == 'Generator' then
+        createOutline(item)
+    end
+end
+
+-- Initial application of ESP to existing generators
+for _, v in ipairs(game.Workspace:GetDescendants()) do
+    applyESP(v)
+end
+
+-- Event listeners to apply ESP when new generators are added or removed
+game.Workspace.DescendantAdded:Connect(function(descendant)
+    applyESP(descendant)
+end)
+
+game.Workspace.DescendantRemoving:Connect(function(descendant)
+    if descendant:IsA('Highlight') then
+        descendant:Destroy()
+    end
+end)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Remove Billboards",
+   Callback = function()
+   local function removeBillboards()
+    for _, descendant in ipairs(game.Workspace:GetDescendants()) do
+        if descendant:IsA('BillboardGui') then
+            descendant:Destroy()
+        end
+    end
+end
+
+-- Call the function to remove all BillboardGui objects
+removeBillboards()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Remove Highlights",
+   Callback = function()
+   local function removeHighlights()
+    for _, descendant in ipairs(game.Workspace:GetDescendants()) do
+        if descendant:IsA('Highlight') then
+            descendant:Destroy()
+        end
+    end
+end
+
+-- Call the function to remove all Highlight objects
+removeHighlights()
+   end,
+})
+
+local Section = Tab:CreateSection("Visual/Client-Sided (More Will be added) ")
+
+local Button = Tab:CreateButton({
+   Name = "Fullbright",
+   Callback = function()
+-- Improved Visibility Script
+game:GetService("Lighting").Brightness = 0.7
+game:GetService("Lighting").Ambient = Color3.new(0.75, 0.75, 0.75)
+game:GetService("Lighting").OutdoorAmbient = Color3.new(0.75, 0.75, 0.75)
+game:GetService("Lighting").GlobalShadows = false
+game:GetService("Lighting").FogEnd = 100000
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Become dandy(USE BOXTEN + In Lobby Only)",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/GyL3OYAW/raw"))()
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "Change DisplayName",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.DisplayName.Text = (Text)
+   end,
+})
+local Input = Tab:CreateInput({
+   Name = "Change UserName",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input2",
+   Callback = function(Text)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.Text = (Text)
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Show Owner Tag",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = (Value)
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "Change Owner Tag",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input3",
+   Callback = function(Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Text = (Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Color3.fromRGB(255, 255, 255)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = true
+   end,
+})
+
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "NameTag Color Picker",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Value
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
+    end
+})
+
+local Section = Tab:CreateSection("Other")
+
+local Toggle = Tab:CreateToggle({
+   Name = "auto skillcheck",
+   CurrentValue = false,
+   Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   local runService = game:GetService("RunService")
+        local virtualInputManager = game:GetService("VirtualInputManager")
+        local player = game.Players.LocalPlayer
+        local ScreenGui = player:WaitForChild("PlayerGui"):FindFirstChild("ScreenGui")
+
+        -- Declarar conexiأ³n fuera de la funciأ³n
+        if not _G.connection then _G.connection = nil end
+
+        -- Verificaciأ³n inicial
+        if not ScreenGui then
+            warn("ScreenGui not found.")
+            return
+        end
+
+        local menu = ScreenGui:FindFirstChild("Menu")
+        local skillCheckFrame = menu and menu:FindFirstChild("SkillCheckFrame")
+        local marker = skillCheckFrame and skillCheckFrame:FindFirstChild("Marker")
+        local goldArea = skillCheckFrame and skillCheckFrame:FindFirstChild("GoldArea")
+        local calibrateButton = menu and menu:FindFirstChild("Calibrate")
+
+        if not (marker and goldArea and calibrateButton) then
+            warn("Required elements not found.")
+            return
+        end
+
+        local timeElapsed = 0
+        local checkInterval = 0.01
+
+        -- Funciأ³n para presionar la tecla espacio
+        local function pressSpace()
+            if skillCheckFrame.Visible then
+                virtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
+                virtualInputManager:SendKeyEvent(false, Enum.KeyCode.Space, false, game)
+            end
+        end
+
+        -- Funciأ³n para comprobar la posiciأ³n de los frames
+        local function checkFramesPosition()
+            local frame1X = marker.AbsolutePosition.X
+            local frame2X = goldArea.AbsolutePosition.X
+            local minRange = frame2X
+            local maxRange = frame2X + 10
+
+            if frame1X >= minRange and frame1X <= maxRange then
+                pressSpace()
+            end
+        end
+
+        -- Si el toggle estأ، activado
+        if Value then
+            Rayfield:Notify({
+   Title = "Heads up!",
+   Content = "AutoSkillCheck Enabled.",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+            -- Asegurarse de que no haya conexiones previas
+            if _G.connection then
+                _G.connection:Disconnect()
+                _G.connection = nil
+            end
+
+            -- Inicia la verificaciأ³n del marcador
+            _G.connection = runService.RenderStepped:Connect(function(deltaTime)
+                timeElapsed = timeElapsed + deltaTime
+                if timeElapsed >= checkInterval then
+                    timeElapsed = 0
+                    checkFramesPosition()
+                end
+            end)
+        else
+            Rayfield:Notify({
+   Title = "Heads up!",
+   Content = "AutoSkillCheck Disabled.",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+            -- Detener la conexiأ³n cuando se apaga el toggle
+            if _G.connection then
+                _G.connection:Disconnect()
+                _G.connection = nil
+            end
+        end
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Main Monsters Notifier",
+   CurrentValue = false,
+   Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local toggleEnabled = Value -- Obtiene el estado del toggle
+print("Toggle changed:", toggleEnabled)
+
+if toggleEnabled then
+    local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
+
+    -- Función para enviar una notificación personalizada
+    local function sendNotification(monsterName)
+        Rayfield:Notify({
+   Title = "Alert!",
+   Content = "Main/Lethal Monsters Detected, Be Prepared.",
+   Duration = 6.5,
+   Image = 112318705260205,
+})
+    end
+
+    -- Lista de nombres de monstruos a buscar
+    local targetMonsters = {
+        "DandyMonster",
+        "VeeMonster",
+        "SproutMonster",
+        "ShellyMonster",
+        "PebbleMonster",
+        "AstroMonster",
+        "BobetteMonster",
+   }
+
+    -- Busca la carpeta CurrentRoom en Workspace
+    local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
+    if currentRoom then
+        print("mNotifier activated.")
+        while toggleEnabled do
+            for _, model in ipairs(currentRoom:GetChildren()) do
+                if model:IsA("Model") then
+                    -- Busca la carpeta Monsters dentro del modelo
+                    local monstersFolder = model:FindFirstChild("Monsters")
+                    if monstersFolder then
+                        -- Revisa los monstruos dentro de Monsters
+                        for _, monster in ipairs(monstersFolder:GetChildren()) do
+                            if table.find(targetMonsters, monster.Name) and not notifiedMonsters[monster.Name] then
+                                sendNotification(monster.Name) -- Envía la notificación personalizada
+                                notifiedMonsters[monster.Name] = true -- Marca el monstruo como notificado
+                            end
+                        end
+                    end
+                end
+            end
+
+            -- Limpia los monstruos que ya no están en Monsters
+            for monsterName, _ in pairs(notifiedMonsters) do
+                local stillExists = false
+                for _, model in ipairs(currentRoom:GetChildren()) do
+                    local monstersFolder = model:FindFirstChild("Monsters")
+                    if monstersFolder and monstersFolder:FindFirstChild(monsterName) then
+                        stillExists = true
+                        break
+                    end
+                end
+                if not stillExists then
+                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no están
+                end
+            end
+
+            task.wait(5) -- Verifica nuevamente cada 5 segundos
+        end
+    else
+        warn("didn't find da CurrentRoom folder in Workspace.")
+    end
+else
+    print("mNotifier Turned off.")
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Noclip(GUI Toggle)",
+   Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local head = character:WaitForChild("Head")
+local screenGui = Instance.new("ScreenGui")
+local toggleButton = Instance.new("TextButton")
+local uICorner = Instance.new("UICorner")
+
+-- Add ScreenGui to the player's PlayerGui
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Set up toggle button properties
+toggleButton.Size = UDim2.new(0, 50, 0, 50)
+toggleButton.Font = Enum.Font.FredokaOne
+toggleButton.Position = UDim2.new(1, -125, 0, 0)
+toggleButton.Text = "Noclip"
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 139)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Parent = screenGui
+
+-- Add rounded corners to the button
+uICorner.CornerRadius = UDim.new(0, 15)
+uICorner.Parent = toggleButton
+
+local collisionEnabled = false
+
+local function makeUncollidable(part)
+    part.CanCollide = false
+end
+
+local function onTouch(otherPart)
+    if collisionEnabled then
+        if otherPart:IsDescendantOf(game.Workspace.Terrain) then
+            return
+        end
+        if not otherPart.CanCollide then
+            return
+        end
+        makeUncollidable(otherPart)
+    end
+end
+
+toggleButton.MouseButton1Click:Connect(function()
+    collisionEnabled = not collisionEnabled
+    toggleButton.Text = collisionEnabled and "Status: On" or "Status: Off"
+    toggleButton.TextScaled = true
+end)
+
+local function attachTouchEvent()
+    character = player.Character or player.CharacterAdded:Wait()
+    head = character:WaitForChild("Head")
+    head.Touched:Connect(onTouch)
+end
+
+attachTouchEvent()
+player.CharacterAdded:Connect(attachTouchEvent)
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "float",
+   Callback = function()
+if game.PlaceId == 16116270224 then
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    -- Create the main frame for the notice box
+    local mainFrame = Instance.new("Frame")
+    mainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Set the anchor point to the center
+    mainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start small
+    mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center position
+    mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    mainFrame.BorderSizePixel = 0
+    mainFrame.Parent = screenGui
+
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 10)
+    uiCorner.Parent = mainFrame
+
+    -- Tween to grow the main frame
+    local tweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(
+        1, -- Time
+        Enum.EasingStyle.Quint, -- EasingStyle
+        Enum.EasingDirection.Out, -- EasingDirection
+        0, -- RepeatCount
+        false, -- Reverses
+        0 -- DelayTime
+    )
+
+    local goal = {}
+    goal.Size = UDim2.new(0.5, 0, 0.5, 0) -- Target size
+
+    local tween = tweenService:Create(mainFrame, tweenInfo, goal)
+    tween:Play()
+
+    -- Create the text label for the notice text
+    local noticeText = Instance.new("TextLabel")
+    noticeText.Size = UDim2.new(1, -20, 1, -40)
+    noticeText.Position = UDim2.new(0, 10, 0, 10)
+    noticeText.BackgroundTransparency = 1
+    noticeText.Text = "Activation of The 'Float' Script Can't be Turned off Only if Reset, Do you still wish to Continue?"
+    noticeText.TextColor3 = Color3.fromRGB(200, 200, 200) -- White text
+    noticeText.TextWrapped = true
+    noticeText.Font = Enum.Font.FredokaOne
+    noticeText.TextSize = 18
+    noticeText.Parent = mainFrame
+
+    -- Create the warning text label
+    local warnText = Instance.new("TextLabel")
+    warnText.Size = UDim2.new(1, -20, 0, 30)
+    warnText.Position = UDim2.new(0, 10, 0, 5)
+    warnText.BackgroundTransparency = 1
+    warnText.Text = "Warning ⚠️"
+    warnText.TextColor3 = Color3.fromRGB(255, 0, 0) -- Red text for warning
+    warnText.TextWrapped = true
+    warnText.Font = Enum.Font.FredokaOne
+    warnText.TextSize = 22
+    warnText.Parent = mainFrame
+
+    -- Create the 'Ok' button
+    local continueButton = Instance.new("TextButton")
+    continueButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+    continueButton.Position = UDim2.new(0.3, 0, 0.75, 0)
+    continueButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Blue button
+    continueButton.Text = "Continue"
+    continueButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
+    continueButton.Font = Enum.Font.FredokaOne
+    continueButton.TextSize = 18
+    continueButton.Parent = mainFrame
+
+    local uiCorner3 = Instance.new("UICorner")
+    uiCorner3.CornerRadius = UDim.new(0, 10)
+    uiCorner3.Parent = continueButton
+    -- Add functionality to the 'Ok' button
+    continueButton.MouseButton1Click:Connect(function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+
+        -- Fade-out effect
+        for i = 1, 30 do
+            mainFrame.BackgroundTransparency = i/30
+            noticeText.TextTransparency = i/30
+            warnText.TextTransparency = i/30
+            continueButton.BackgroundTransparency = i/30
+            continueButton.TextTransparency = i/30
+            wait(0.033)
+        end
+        screenGui:Destroy()
+    end)
+else
+    local getinfo = getinfo or debug.getinfo
+    local DEBUG = false
+    local Hooked = {}
+
+    local Detected, Kill
+
+    setthreadidentity(2)
+
+    for i, v in getgc(true) do
+        if typeof(v) == "table" then
+            local DetectFunc = rawget(v, "Detected")
+            local KillFunc = rawget(v, "Kill")
+        
+            if typeof(DetectFunc) == "function" and not Detected then
+                Detected = DetectFunc
+                
+                local Old; Old = hookfunction(Detected, function(Action, Info, NoCrash)
+                    if Action ~= "_" then
+                        if DEBUG then
+                            warn("Adonis AntiCheat flagged\nMethod: " .. Action .. "\nInfo: " .. Info)
+                        end
+                    end
+                    
+                    return true
+                end)
+
+                table.insert(Hooked, Detected)
+            end
+
+            if rawget(v, "Variables") and rawget(v, "Process") and typeof(KillFunc) == "function" and not Kill then
+                Kill = KillFunc
+                local Old; Old = hookfunction(Kill, function(Info)
+                    if DEBUG then
+                        warn("Adonis AntiCheat tried to kill (fallback): " .. Info)
+                    end
+                end)
+
+                table.insert(Hooked, Kill)
+            end
+        end
+    end
+
+    local Old; Old = hookfunction(getrenv().debug.info, newcclosure(function(...)
+        local LevelOrFunc, Info = ...
+
+        if Detected and LevelOrFunc == Detected then
+            if DEBUG then
+                warn("zins | adonis bypassed")
+            end
+
+            return coroutine.yield(coroutine.running())
+        end
+        
+        return Old(...)
+    end))
+    -- setthreadidentity(9)
+    setthreadidentity(7)
+
+    -- Define the desired hip height
+    local desiredHipHeight = 5.5
+
+    -- Function to set hip height
+    local function setHipHeight(character, height)
+        if character:FindFirstChild("Humanoid") then
+            character.Humanoid.HipHeight = height
+        end
+    end
+
+    -- Get the player's character
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    -- Set the hip height for the character
+    setHipHeight(character, desiredHipHeight)
+end
+    end,
+})
+
+local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
+
+local Label = Tab:CreateLabel("Working on it.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+local Tab = Window:CreateTab("other hubs")
+
+local Button = Tab:CreateButton({
+   Name = "spooks hub",
+   Callback = function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/ApparentlySpooks/dandysworldspookshub/refs/heads/main/obfuscated%20spooks%20hub%20dandys%20world.lua'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "hxc hub",
+   Callback = function()
+   loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/hooaczx/Script/main/lnfinitive%20Ui"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "egas hub",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Amo1224gus/iriska/refs/heads/main/egashub.lua"))();
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Noxious hub",
+   Callback = function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/y8eKgLSs"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "hex hub",
+   Callback = function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/N4Y01FkS"))();
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "glisten's animation closet",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/RodeStriker/TheDandyHelper/refs/heads/main/GAC"))()
+   end,
+})
+
+local Section = Tab:CreateSection("End")
+
+local Tab = Window:CreateTab("Credits")
