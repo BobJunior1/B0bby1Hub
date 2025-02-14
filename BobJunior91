@@ -1,5 +1,5 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Noteًں“‌";
+    Title = "Note📝";
     Text = "Script Loaded!";
     Icon = "http://www.roblox.com/asset/?id=112318705260205";
     Duration = 7;
@@ -936,6 +936,50 @@ end
 local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
 
 local Label = Tab:CreateLabel("Working on it.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+
+local Button = Tab:CreateButton({
+   Name = "Sprout AnimationPack",
+   Callback = function()
+      local animations = {
+         idle = "rbxassetid://18555568169",    -- Primary idle animation
+         run = "rbxassetid://18578948869",     -- Run animation
+      }
+
+      local function replaceAnimations()
+         local player = game.Players.LocalPlayer
+         local character = player.Character or player.CharacterAdded:Wait()
+         local animateScript = character:WaitForChild("Animate")
+         for animationType, animationId in pairs(animations) do
+            if animateScript:FindFirstChild(animationType) then
+               for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                  if anim:IsA("Animation") then
+                     anim.AnimationId = animationId
+                  end
+               end
+            end
+         end
+      end
+
+      local function ensureAnimationsLoop()
+         local player = game.Players.LocalPlayer
+         local character = player.Character or player.CharacterAdded:Wait()
+         local humanoid = character:WaitForChild("Humanoid")
+         local connection
+         connection = humanoid.AnimationPlayed:Connect(function(animationTrack)
+            animationTrack.Looped = true
+            -- Disconnect the connection when no longer needed
+            humanoid.AncestryChanged:Connect(function(_, parent)
+               if not parent then
+                  connection:Disconnect()
+               end
+            end)
+         end)
+      end
+
+      replaceAnimations()
+      ensureAnimationsLoop()
+   end,
+})
 
 local Tab = Window:CreateTab("other hubs")
 
