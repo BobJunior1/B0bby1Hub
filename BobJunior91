@@ -42,7 +42,7 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
 
-local Section = Tab:CreateSection("UNDER MAINTENANCE")
+local Section = Tab:CreateSection("Esp/Highlights")
 
 local Button = Tab:CreateButton({
    Name = "Esp twisteds",
@@ -935,7 +935,719 @@ end
 
 local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
 
-local Label = Tab:CreateLabel("Working on it.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+local Button = Tab:CreateButton({
+   Name = "Sprout AnimationPack",
+   Callback = function()
+local animations = {
+    idle = "rbxassetid://18555568169",    -- Primary idle animation
+    run = "rbxassetid://18578948869",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shrimpo AnimationPack",
+   Callback = function()
+local animations = {
+    idle = "rbxassetid://17561045485",    -- Primary idle animation
+    run = "rbxassetid://17561196171",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Boxten AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://16987798588",    -- Primary idle animation
+    run = "rbxassetid://16987891441",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Astro AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17477484184",    -- Primary idle animation
+    run = "rbxassetid://17477562502",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Brightney AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17266012992",    -- Primary idle animation
+    run = "rbxassetid://17267881920",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Cosmo AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18608700264",    -- Primary idle animation
+    run = "rbxassetid://18608782689",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Finn AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18717500470",    -- Primary idle animation
+    run = "rbxassetid://18717443931",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Flutter AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18226261062",    -- Primary idle animation
+    run = "rbxassetid://18226198149",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Gigi AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://79372488497037",    -- Primary idle animation
+    run = "rbxassetid://131680997351874",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Glisten AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18789278688",    -- Primary idle animation
+    run = "rbxassetid://18789173875",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Goob AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17231273641",    -- Primary idle animation
+    run = "rbxassetid://17231779680",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Poppy AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://16409449646",    -- Primary idle animation
+    run = "rbxassetid://16205089554",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "R&D AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17451039864",    -- Primary idle animation
+    run = "rbxassetid://17450844457",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Rodger AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17097949440",    -- Primary idle animation
+    run = "rbxassetid://17097874814",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Scraps AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17553394893",    -- Primary idle animation
+    run = "rbxassetid://17554165839",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shelly AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18199493442",    -- Primary idle animation
+    run = "rbxassetid://18199284470",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Teagan AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18183710195",    -- Primary idle animation
+    run = "rbxassetid://18183602038",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Tisha AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://18152903980",    -- Primary idle animation
+    run = "rbxassetid://18152665882",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = " AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://0",    -- Primary idle animation
+    run = "rbxassetid://0",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Toodles AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17504345651",    -- Primary idle animation
+    run = "rbxassetid://17504197216",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Vee AnimationPack",
+   Callback = function()
+   local animations = {
+    idle = "rbxassetid://17294160873",    -- Primary idle animation
+    run = "rbxassetid://17293962722",     -- Run animation
+}
+local function replaceAnimations()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local animateScript = character:WaitForChild("Animate")
+    for animationType, animationId in pairs(animations) do
+        if animateScript:FindFirstChild(animationType) then
+            for _, anim in ipairs(animateScript[animationType]:GetChildren()) do
+                if anim:IsA("Animation") then
+                    anim.AnimationId = animationId
+                end
+            end
+        end
+    end
+end
+local function ensureAnimationsLoop()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        animationTrack.Looped = true
+    end)
+end
+replaceAnimations()
+ensureAnimationsLoop()
+   end,
+})
 
 local Tab = Window:CreateTab("other hubs")
 
@@ -961,7 +1673,8 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-   Name = "Noxious hub",
+   Name = "N
+oxious hub",
    Callback = function()
    loadstring(game:HttpGet("https://pastebin.com/raw/y8eKgLSs"))()
    end,
