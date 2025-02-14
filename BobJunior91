@@ -1,6 +1,6 @@
 game.StarterGui:SetCore("SendNotification", {
     Title = "Note📝";
-    Text = "Script Loaded!";
+    Text = "Script Loading..";
     Icon = "http://www.roblox.com/asset/?id=112318705260205";
     Duration = 7;
 })
