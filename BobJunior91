@@ -625,85 +625,6 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 
-local Toggle = Tab:CreateToggle({
-   Name = "Main Monsters Notifier",
-   CurrentValue = false,
-   Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-local toggleEnabled = Value -- Obtiene el estado del toggle
-print("Toggle changed:", toggleEnabled)
-
-if toggleEnabled then
-    local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
-
-    -- Funciأ³n para enviar una notificaciأ³n personalizada
-    local function sendNotification(monsterName)
-        Rayfield:Notify({
-   Title = "Alert!",
-   Content = "Main/Lethal Monsters Detected, Be Prepared.",
-   Duration = 6.5,
-   Image = 112318705260205,
-})
-    end
-
-    -- Lista de nombres de monstruos a buscar
-    local targetMonsters = {
-        "DandyMonster",
-        "VeeMonster",
-        "SproutMonster",
-        "ShellyMonster",
-        "PebbleMonster",
-        "AstroMonster",
-        "BobetteMonster",
-   }
-
-    -- Busca la carpeta CurrentRoom en Workspace
-    local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
-    if currentRoom then
-        print("mNotifier activated.")
-        while toggleEnabled do
-            for _, model in ipairs(currentRoom:GetChildren()) do
-                if model:IsA("Model") then
-                    -- Busca la carpeta Monsters dentro del modelo
-                    local monstersFolder = model:FindFirstChild("Monsters")
-                    if monstersFolder then
-                        -- Revisa los monstruos dentro de Monsters
-                        for _, monster in ipairs(monstersFolder:GetChildren()) do
-                            if table.find(targetMonsters, monster.Name) and not notifiedMonsters[monster.Name] then
-                                sendNotification(monster.Name) -- Envأ­a la notificaciأ³n personalizada
-                                notifiedMonsters[monster.Name] = true -- Marca el monstruo como notificado
-                            end
-                        end
-                    end
-                end
-            end
-
-            -- Limpia los monstruos que ya no estأ،n en Monsters
-            for monsterName, _ in pairs(notifiedMonsters) do
-                local stillExists = false
-                for _, model in ipairs(currentRoom:GetChildren()) do
-                    local monstersFolder = model:FindFirstChild("Monsters")
-                    if monstersFolder and monstersFolder:FindFirstChild(monsterName) then
-                        stillExists = true
-                        break
-                    end
-                end
-                if not stillExists then
-                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estأ،n
-                end
-            end
-
-            task.wait(5) -- Verifica nuevamente cada 5 segundos
-        end
-    else
-        warn("didn't find da CurrentRoom folder in Workspace.")
-    end
-else
-    print("mNotifier Turned off.")
-end
-   end,
-})
-
 local Button = Tab:CreateButton({
    Name = "Noclip(GUI Toggle)",
    Callback = function()
@@ -935,9 +856,88 @@ end
     end,
 })
 
-local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Notifications", 4483362458) -- Title, Image
 
-local Label = Tab:CreateLabel("Working on it.", 4483362458, Color3.fromRGB(255, 255, 255), false)
+local Toggle = Tab:CreateToggle({
+   Name = "Main Monsters Notifier",
+   CurrentValue = false,
+   Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+local toggleEnabled = Value -- Obtiene el estado del toggle
+print("Toggle changed:", toggleEnabled)
+
+if toggleEnabled then
+    local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
+
+    -- Funciأ³n para enviar una notificaciأ³n personalizada
+    local function sendNotification(monsterName)
+        Rayfield:Notify({
+   Title = "Alert!",
+   Content = "Main/Lethal Monsters Detected, Be Prepared.",
+   Duration = 6.5,
+   Image = 112318705260205,
+})
+    end
+
+    -- Lista de nombres de monstruos a buscar
+    local targetMonsters = {
+        "DandyMonster",
+        "VeeMonster",
+        "SproutMonster",
+        "ShellyMonster",
+        "PebbleMonster",
+        "AstroMonster",
+        "BobetteMonster",
+   }
+
+    -- Busca la carpeta CurrentRoom en Workspace
+    local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
+    if currentRoom then
+        print("MonsterNotifier activated.")
+        while toggleEnabled do
+            for _, model in ipairs(currentRoom:GetChildren()) do
+                if model:IsA("Model") then
+                    -- Busca la carpeta Monsters dentro del modelo
+                    local monstersFolder = model:FindFirstChild("Monsters")
+                    if monstersFolder then
+                        -- Revisa los monstruos dentro de Monsters
+                        for _, monster in ipairs(monstersFolder:GetChildren()) do
+                            if table.find(targetMonsters, monster.Name) and not notifiedMonsters[monster.Name] then
+                                sendNotification(monster.Name) -- Envأ­a la notificaciأ³n personalizada
+                                notifiedMonsters[monster.Name] = true -- Marca el monstruo como notificado
+                            end
+                        end
+                    end
+                end
+            end
+
+            -- Limpia los monstruos que ya no estأ،n en Monsters
+            for monsterName, _ in pairs(notifiedMonsters) do
+                local stillExists = false
+                for _, model in ipairs(currentRoom:GetChildren()) do
+                    local monstersFolder = model:FindFirstChild("Monsters")
+                    if monstersFolder and monstersFolder:FindFirstChild(monsterName) then
+                        stillExists = true
+                        break
+                    end
+                end
+                if not stillExists then
+                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estأ،n
+                end
+            end
+
+            task.wait(5) -- Verifica nuevamente cada 5 segundos
+        end
+    else
+        warn("didn't find da CurrentRoom folder in Workspace.")
+    end
+else
+    print("MonsterNotifier Turned off.")
+end
+   end,
+})
+
+local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
 
 local Button = Tab:CreateButton({
    Name = "Sprout AnimationPack",
