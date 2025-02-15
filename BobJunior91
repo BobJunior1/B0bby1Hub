@@ -1734,4 +1734,4 @@ local Button = Tab:CreateButton({
 
 local Section = Tab:CreateSection("End")
 
-local Tab = Window:CreateTab("Credits" 130159649938246)
+local Tab = Window:CreateTab("Credits")
