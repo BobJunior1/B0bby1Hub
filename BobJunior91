@@ -1,5 +1,5 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Note📝";
+    Title = "Noteًں“‌";
     Text = "Script Loading..";
     Icon = "http://www.roblox.com/asset/?id=95060402744284";
     Duration = 7;
@@ -579,10 +579,10 @@ local Toggle = Tab:CreateToggle({
         local player = game.Players.LocalPlayer
         local ScreenGui = player:WaitForChild("PlayerGui"):FindFirstChild("ScreenGui")
 
-        -- Declarar conexiط£آ³n fuera de la funciط£آ³n
+        -- Declarar conexiط·آ£ط¢آ³n fuera de la funciط·آ£ط¢آ³n
         if not _G.connection then _G.connection = nil end
 
-        -- Verificaciط£آ³n inicial
+        -- Verificaciط·آ£ط¢آ³n inicial
         if not ScreenGui then
             warn("ScreenGui not found.")
             return
@@ -602,7 +602,7 @@ local Toggle = Tab:CreateToggle({
         local timeElapsed = 0
         local checkInterval = 0.01
 
-        -- Funciط£آ³n para presionar la tecla espacio
+        -- Funciط·آ£ط¢آ³n para presionar la tecla espacio
         local function pressSpace()
             if skillCheckFrame.Visible then
                 virtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
@@ -610,7 +610,7 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-        -- Funciط£آ³n para comprobar la posiciط£آ³n de los frames
+        -- Funciط·آ£ط¢آ³n para comprobar la posiciط·آ£ط¢آ³n de los frames
         local function checkFramesPosition()
             local frame1X = marker.AbsolutePosition.X
             local frame2X = goldArea.AbsolutePosition.X
@@ -622,7 +622,7 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-        -- Si el toggle estط£طŒ activado
+        -- Si el toggle estط·آ£ط·إ’ activado
         if Value then
             print("AutoSkillcheck: Enabled")
             -- Asegurarse de que no haya conexiones previas
@@ -631,7 +631,7 @@ local Toggle = Tab:CreateToggle({
                 _G.connection = nil
             end
 
-            -- Inicia la verificaciط£آ³n del marcador
+            -- Inicia la verificaciط·آ£ط¢آ³n del marcador
             _G.connection = runService.RenderStepped:Connect(function(deltaTime)
                 timeElapsed = timeElapsed + deltaTime
                 if timeElapsed >= checkInterval then
@@ -641,7 +641,7 @@ local Toggle = Tab:CreateToggle({
             end)
         else
             Print("AutoSkillCheck: Disabled")
-            -- Detener la conexiط£آ³n cuando se apaga el toggle
+            -- Detener la conexiط·آ£ط¢آ³n cuando se apaga el toggle
             if _G.connection then
                 _G.connection:Disconnect()
                 _G.connection = nil
@@ -765,7 +765,7 @@ if game.PlaceId == 16116270224 then
     warnText.Size = UDim2.new(1, -20, 0, 30)
     warnText.Position = UDim2.new(0, 10, 0, 5)
     warnText.BackgroundTransparency = 1
-    warnText.Text = "Warning âڑ ï¸ڈ"
+    warnText.Text = "Warning أ¢ع‘ أ¯آ¸عˆ"
     warnText.TextColor3 = Color3.fromRGB(255, 0, 0) -- Red text for warning
     warnText.TextWrapped = true
     warnText.Font = Enum.Font.FredokaOne
@@ -892,7 +892,7 @@ local toggleEnabled = Value
 if toggleEnabled then
     local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
 
-    -- Funciأ³n para enviar una notificaciأ³n personalizada
+    -- Funciط£آ³n para enviar una notificaciط£آ³n personalizada
     local function sendNotification(monsterName)
         Rayfield:Notify({
    Title = "Alert!",
@@ -926,7 +926,7 @@ if toggleEnabled then
                         -- Revisa los monstruos dentro de Monsters
                         for _, monster in ipairs(monstersFolder:GetChildren()) do
                             if table.find(targetMonsters, monster.Name) and not notifiedMonsters[monster.Name] then
-                                sendNotification(monster.Name) -- Envأ­a la notificaciأ³n personalizada
+                                sendNotification(monster.Name) -- Envط£آ­a la notificaciط£آ³n personalizada
                                 notifiedMonsters[monster.Name] = true -- Marca el monstruo como notificado
                             end
                         end
@@ -934,7 +934,7 @@ if toggleEnabled then
                 end
             end
 
-            -- Limpia los monstruos que ya no estأ،n en Monsters
+            -- Limpia los monstruos que ya no estط£طŒn en Monsters
             for monsterName, _ in pairs(notifiedMonsters) do
                 local stillExists = false
                 for _, model in ipairs(currentRoom:GetChildren()) do
@@ -945,7 +945,7 @@ if toggleEnabled then
                     end
                 end
                 if not stillExists then
-                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estأ،n
+                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estط£طŒn
                 end
             end
 
@@ -990,7 +990,7 @@ if Value then
                     if itemsFolder then
                         for _, item in ipairs(itemsFolder:GetChildren()) do
                             if table.find(targetModels, item.Name) and not notifiedModels[item.Name] then
-                                -- Enviar notificación
+                                -- Enviar notificaciأ³n
    Rayfield:Notify({
    Title = "Notification",
    Content = "Rare Item/Items Found, Better go Find it!",
@@ -1015,7 +1015,7 @@ if Value then
                     end
                 end
                 if not stillExists then
-                    notifiedModels[modelName] = nil -- Elimina modelos que ya no están
+                    notifiedModels[modelName] = nil -- Elimina modelos que ya no estأ،n
                 end
             end
 
