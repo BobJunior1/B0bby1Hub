@@ -851,11 +851,9 @@ local Tab = Window:CreateTab("Notifications", 95060402744284) -- Title, Image
 local Toggle = Tab:CreateToggle({
    Name = "Main Monsters Notifier",
    CurrentValue = false,
-   Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "ToggleMainMonsterNotifier", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-local toggleEnabled = Value -- Obtiene el estado del toggle
-print("Toggle changed:", toggleEnabled)
-
+local toggleEnabled = Value
 if toggleEnabled then
     local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
 
@@ -883,7 +881,7 @@ if toggleEnabled then
     -- Busca la carpeta CurrentRoom en Workspace
     local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
     if currentRoom then
-        print("MonsterNotifier activated.")
+        print("MainMonsterNotifier Enabled.")
         while toggleEnabled do
             for _, model in ipairs(currentRoom:GetChildren()) do
                 if model:IsA("Model") then
@@ -922,7 +920,7 @@ if toggleEnabled then
         warn("didn't find da CurrentRoom Folder inside Workspace(you need to be ingame)")
     end
 else
-    print("MonsterNotifier Turned off.")
+    print("MainMonsterNotifier Disabled.")
 end
    end,
 })
@@ -958,11 +956,12 @@ if Value then
                         for _, item in ipairs(itemsFolder:GetChildren()) do
                             if table.find(targetModels, item.Name) and not notifiedModels[item.Name] then
                                 -- Enviar notificación
-                                WindUI:Notify({
-                                    Title = "Item Found",
-                                    Content = "Rare item: " .. item.Name,
-                                    Duration = 8
-                                })
+   Rayfield:Notify({
+   Title = "Notification",
+   Content = "Rare Item/Items Found, Better go Find it!",
+   Duration = 6.5,
+   Image = 95060402744284,
+})
                                 notifiedModels[item.Name] = true -- Marca como notificado
                             end
                         end
