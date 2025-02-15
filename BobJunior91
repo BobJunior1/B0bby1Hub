@@ -472,7 +472,7 @@ game:GetService("Lighting").FogEnd = 100000
 })
 
 local Button = Tab:CreateButton({
-   Name = "Become dandy(USE BOXTEN + In Lobby Only)",
+   Name = "Become dandy(USE BOXTEN)",
    Callback = function()
 loadstring(game:HttpGet("https://pastefy.app/GyL3OYAW/raw"))()
 local Dandy = game.Workspace.Elevators.Elevator.DandyStore.DandyShop
