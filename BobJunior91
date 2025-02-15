@@ -1688,7 +1688,7 @@ ensureAnimationsLoop()
    end,
 })
 
-local Tab = Window:CreateTab("other hubs")
+local Tab = Window:CreateTab("other hubs", 105345947222541)
 
 local Button = Tab:CreateButton({
    Name = "spooks hub",
