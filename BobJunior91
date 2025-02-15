@@ -423,7 +423,7 @@ end)
    end,
 })
 
-local Section = Tab:CreateSection(".")
+local Section = Tab:CreateSection("Remove")
 
 local Button = Tab:CreateButton({
    Name = "Remove Billboards",
