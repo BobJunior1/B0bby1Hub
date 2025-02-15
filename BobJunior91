@@ -846,7 +846,7 @@ end
     end,
 })
 
-local Tab = Window:CreateTab("Notifications", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Notifications", 95060402744284) -- Title, Image
 
 local Toggle = Tab:CreateToggle({
    Name = "Main Monsters Notifier",
