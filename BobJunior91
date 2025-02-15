@@ -423,6 +423,8 @@ end)
    end,
 })
 
+local Section = Tab:CreateSection(".")
+
 local Button = Tab:CreateButton({
    Name = "Remove Billboards",
    Callback = function()
