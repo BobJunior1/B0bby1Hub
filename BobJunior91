@@ -927,6 +927,70 @@ end
    end,
 })
 
+print("Toggle changed:", Value)
+
+if Value then
+    local notifiedModels = {} -- Tabla para rastrear modelos ya notificados
+    local targetModels = { -- Lista de modelos a buscar
+        "Bandage",
+        "HealthKit",
+        "SmokeBomb",
+        "EjectButton",
+        "Valve",
+        "Box chocolates",
+        "AirHorn",
+        "EnigmaCandy",
+        "JumperCable",
+        "PopBottle"
+    }
+    local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
+
+    if currentRoom then
+        print("Notifier Enabled.")
+        while Value do
+            for _, model in ipairs(currentRoom:GetChildren()) do
+                if model:IsA("Model") then
+                    local itemsFolder = model:FindFirstChild("Items")
+                    if itemsFolder then
+                        for _, item in ipairs(itemsFolder:GetChildren()) do
+                            if table.find(targetModels, item.Name) and not notifiedModels[item.Name] then
+                                -- Enviar notificación
+                                WindUI:Notify({
+                                    Title = "Item Found",
+                                    Content = "Rare item: " .. item.Name,
+                                    Duration = 8
+                                })
+                                notifiedModels[item.Name] = true -- Marca como notificado
+                            end
+                        end
+                    end
+                end
+            end
+
+            -- Limpia modelos que ya no existen en la carpeta Items
+            for modelName, _ in pairs(notifiedModels) do
+                local stillExists = false
+                for _, model in ipairs(currentRoom:GetChildren()) do
+                    local itemsFolder = model:FindFirstChild("Items")
+                    if itemsFolder and itemsFolder:FindFirstChild(modelName) then
+                        stillExists = true
+                        break
+                    end
+                end
+                if not stillExists then
+                    notifiedModels[modelName] = nil -- Elimina modelos que ya no están
+                end
+            end
+
+            task.wait(5) -- Verifica nuevamente cada 5 segundos
+        end
+    else
+        warn("didn't find Da CurrentRoom folder.")
+    end
+else
+    print("RareItemsNotifier Disabled.")
+end
+
 local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
 
 local Button = Tab:CreateButton({
