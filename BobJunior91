@@ -927,8 +927,11 @@ end
    end,
 })
 
-print("Toggle changed:", Value)
-
+local Toggle = Tab:CreateToggle({
+   Name = "Rare Items Notifier",
+   CurrentValue = false,
+   Flag = "ToggleItemNotifier", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
 if Value then
     local notifiedModels = {} -- Tabla para rastrear modelos ya notificados
     local targetModels = { -- Lista de modelos a buscar
@@ -946,7 +949,7 @@ if Value then
     local currentRoom = game.Workspace:FindFirstChild("CurrentRoom")
 
     if currentRoom then
-        print("Notifier Enabled.")
+        print("RareItemsNotifier Enabled.")
         while Value do
             for _, model in ipairs(currentRoom:GetChildren()) do
                 if model:IsA("Model") then
@@ -990,6 +993,8 @@ if Value then
 else
     print("RareItemsNotifier Disabled.")
 end
+   end,
+})
 
 local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
 
