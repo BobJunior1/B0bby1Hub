@@ -589,12 +589,7 @@ local Toggle = Tab:CreateToggle({
 
         -- Si el toggle estط£طŒ activado
         if Value then
-            Rayfield:Notify({
-   Title = "Heads up!",
-   Content = "AutoSkillCheck Enabled.",
-   Duration = 6.5,
-   Image = 4483362458,
-})
+            print("AutoSkillcheck: Enabled")
             -- Asegurarse de que no haya conexiones previas
             if _G.connection then
                 _G.connection:Disconnect()
@@ -610,12 +605,7 @@ local Toggle = Tab:CreateToggle({
                 end
             end)
         else
-            Rayfield:Notify({
-   Title = "Heads up!",
-   Content = "AutoSkillCheck Disabled.",
-   Duration = 6.5,
-   Image = 4483362458,
-})
+            Print("AutoSkillCheck: Disabled")
             -- Detener la conexiط£آ³n cuando se apaga el toggle
             if _G.connection then
                 _G.connection:Disconnect()
@@ -929,7 +919,7 @@ if toggleEnabled then
             task.wait(5) -- Verifica nuevamente cada 5 segundos
         end
     else
-        warn("didn't find da CurrentRoom folder in Workspace.")
+        warn("didn't find da CurrentRoom Folder inside Workspace(you need to be ingame)")
     end
 else
     print("MonsterNotifier Turned off.")
