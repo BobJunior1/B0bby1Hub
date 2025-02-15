@@ -995,7 +995,7 @@ end
    end,
 })
 
-local Tab = Window:CreateTab("Animations", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Animations", 120055634852740) -- Title, Image
 
 local Button = Tab:CreateButton({
    Name = "Sprout AnimationPack",
