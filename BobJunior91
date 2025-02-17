@@ -457,116 +457,6 @@ removeHighlights()
    end,
 })
 
-local Section = Tab:CreateSection("Visual/Client-Sided (More Will be added) ")
-
-local Button = Tab:CreateButton({
-   Name = "Fullbright",
-   Callback = function()
--- Improved Visibility Script
-game:GetService("Lighting").Brightness = 0.7
-game:GetService("Lighting").Ambient = Color3.new(0.75, 0.75, 0.75)
-game:GetService("Lighting").OutdoorAmbient = Color3.new(0.75, 0.75, 0.75)
-game:GetService("Lighting").GlobalShadows = false
-game:GetService("Lighting").FogEnd = 100000
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Become dandy(USE BOXTEN)",
-   Callback = function()
-loadstring(game:HttpGet("https://pastefy.app/GyL3OYAW/raw"))()
-local Dandy = game.Workspace.Elevators.Elevator.DandyStore.DandyShop
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local DHAir = Dandy.Hair
-        local CHAir = character.Hair
-
-        for _, partA in ipairs(Dandy:GetDescendants()) do
-            local partB = character:FindFirstChild(partA.Name, true)
-            if partB then
-                DHAir.Parent = character
-                DHAir.Joint.Part0 = character.Head
-                wait(0.01)
-                character.Animate.idle.Animation1.AnimationId = "rbxassetid://16496520991"
-                character.Animate.idle.Animation2.AnimationId = "rbxassetid://16496520991"
-                character.Animate.run.RunAnim.AnimationId = "rbxassetid://16496812530"
-                character.Config.NormalTexture.Texture = "rbxassetid://16496414911"
-                character.Config.HurtTexture.Texture = "rbxassetid://17561468145"
-
-                CHAir:Destroy()
-                wait(0.01)
-                if partA:IsA("MeshPart") and partB:IsA("MeshPart") then
-                    local tempMeshId = partA.MeshId
-                    partA.MeshId = partB.MeshId
-                    partB.MeshId = tempMeshId
-                    local tempTextureId = partA.TextureID
-                    partA.TextureID = partB.TextureID
-                    partB.TextureID = tempTextureId
-                end
-                if partA:IsA("SpecialMesh") and partB:IsA("SpecialMesh") then
-                    local tempMeshId = partA.MeshId
-                    partA.MeshId = partB.MeshId
-                    partB.MeshId = tempMeshId
-                end
-            end
-        end
-   end,
-})
-
-local Input = Tab:CreateInput({
-   Name = "Change DisplayName",
-   CurrentValue = "",
-   PlaceholderText = "Input Placeholder",
-   RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
-   Callback = function(Text)
-game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.DisplayName.Text = (Text)
-   end,
-})
-local Input = Tab:CreateInput({
-   Name = "Change UserName",
-   CurrentValue = "",
-   PlaceholderText = "Input Placeholder",
-   RemoveTextAfterFocusLost = false,
-   Flag = "Input2",
-   Callback = function(Text)
-   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.Text = (Text)
-   end,
-})
-
-local Toggle = Tab:CreateToggle({
-   Name = "Show Owner Tag",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = (Value)
-   end,
-})
-
-local Input = Tab:CreateInput({
-   Name = "Change Owner Tag",
-   CurrentValue = "",
-   PlaceholderText = "Input Placeholder",
-   RemoveTextAfterFocusLost = false,
-   Flag = "Input3",
-   Callback = function(Text)
-game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Text = (Text)
-game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Color3.fromRGB(255, 255, 255)
-game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = true
-   end,
-})
-
-local ColorPicker = Tab:CreateColorPicker({
-    Name = "NameTag Color Picker",
-    Color = Color3.fromRGB(255,255,255),
-    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
-    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Value
-    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
-    end
-})
-
 local Section = Tab:CreateSection("Other")
 
 local Toggle = Tab:CreateToggle({
@@ -879,6 +769,118 @@ else
     setHipHeight(character, desiredHipHeight)
 end
     end,
+})
+
+local Tab = Window:CreateTab("Client-Sided/Visual", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Visual/Client-Sided (More Will be added) ")
+
+local Button = Tab:CreateButton({
+   Name = "Fullbright",
+   Callback = function()
+-- Improved Visibility Script
+game:GetService("Lighting").Brightness = 0.7
+game:GetService("Lighting").Ambient = Color3.new(0.75, 0.75, 0.75)
+game:GetService("Lighting").OutdoorAmbient = Color3.new(0.75, 0.75, 0.75)
+game:GetService("Lighting").GlobalShadows = false
+game:GetService("Lighting").FogEnd = 100000
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Become dandy(USE BOXTEN)",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/GyL3OYAW/raw"))()
+local Dandy = game.Workspace.Elevators.Elevator.DandyStore.DandyShop
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local DHAir = Dandy.Hair
+        local CHAir = character.Hair
+
+        for _, partA in ipairs(Dandy:GetDescendants()) do
+            local partB = character:FindFirstChild(partA.Name, true)
+            if partB then
+                DHAir.Parent = character
+                DHAir.Joint.Part0 = character.Head
+                wait(0.01)
+                character.Animate.idle.Animation1.AnimationId = "rbxassetid://16496520991"
+                character.Animate.idle.Animation2.AnimationId = "rbxassetid://16496520991"
+                character.Animate.run.RunAnim.AnimationId = "rbxassetid://16496812530"
+                character.Config.NormalTexture.Texture = "rbxassetid://16496414911"
+                character.Config.HurtTexture.Texture = "rbxassetid://17561468145"
+
+                CHAir:Destroy()
+                wait(0.01)
+                if partA:IsA("MeshPart") and partB:IsA("MeshPart") then
+                    local tempMeshId = partA.MeshId
+                    partA.MeshId = partB.MeshId
+                    partB.MeshId = tempMeshId
+                    local tempTextureId = partA.TextureID
+                    partA.TextureID = partB.TextureID
+                    partB.TextureID = tempTextureId
+                end
+                if partA:IsA("SpecialMesh") and partB:IsA("SpecialMesh") then
+                    local tempMeshId = partA.MeshId
+                    partA.MeshId = partB.MeshId
+                    partB.MeshId = tempMeshId
+                end
+            end
+        end
+   end,
+})
+local Section = Tab:CreateSection("Changing NameTag(LOBBY ONLY)")
+local Input = Tab:CreateInput({
+   Name = "Change DisplayName",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.DisplayName.Text = (Text)
+   end,
+})
+local Input = Tab:CreateInput({
+   Name = "Change UserName",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input2",
+   Callback = function(Text)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.Text = (Text)
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Show Owner Tag",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = (Value)
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "Change Owner Tag",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input3",
+   Callback = function(Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Text = (Text)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Color3.fromRGB(255, 255, 255)
+game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.Visible = true
+   end,
+})
+
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "NameTag Color Picker",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.GroupRank.TextColor3 = Value
+    game.Players.LocalPlayer.Character.HumanoidRootPart.NameTag.Frame.UserName.TextColor3 = Value
+    end
 })
 
 local Tab = Window:CreateTab("Notifications", 95060402744284) -- Title, Image
