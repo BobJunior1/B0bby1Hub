@@ -889,7 +889,7 @@ local ColorPicker = Tab:CreateColorPicker({
     end
 })
 
-local Tab = Window:CreateTab("Notifications", 95060402744284) -- Title, Image
+local Tab = Window:CreateTab("Notifications", 95344475479538) -- Title, Image
 
 local Toggle = Tab:CreateToggle({
    Name = "Main Monsters Notifier",
@@ -1696,7 +1696,7 @@ ensureAnimationsLoop()
    end,
 })
 
-local Tab = Window:CreateTab("other hubs", 92658304210178)
+local Tab = Window:CreateTab("other hubs", 139047351282965)
 
 local Button = Tab:CreateButton({
    Name = "spooks hub",
@@ -1742,4 +1742,4 @@ local Button = Tab:CreateButton({
 
 local Section = Tab:CreateSection("End")
 
-local Tab = Window:CreateTab("Credits", 130159649938246)
+local Tab = Window:CreateTab("Credits", 92658304210178)
