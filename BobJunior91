@@ -777,7 +777,7 @@ local Button = Tab:CreateButton({
    loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/B0bby/refs/heads/main/B50O0B"))() 
    end,
 })
-local Tab = Window:CreateTab("Client-Sided/Visual", 4483362458) -- Title, Image
+local Tab = Window:CreateTab("Client-Sided/Visual", 81762905903097) -- Title, Image
 
 local Section = Tab:CreateSection("Visual/Client-Sided (More Will be added) ")
 
