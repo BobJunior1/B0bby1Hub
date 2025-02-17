@@ -40,7 +40,7 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local Tab = Window:CreateTab("Main", 80397866465354) -- Title, Image
+local Tab = Window:CreateTab("Main", 101314838915929) -- Title, Image
 
 local Section = Tab:CreateSection("Esp")
 
@@ -777,7 +777,7 @@ local Button = Tab:CreateButton({
    loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/B0bby/refs/heads/main/B50O0B"))() 
    end,
 })
-local Tab = Window:CreateTab("Client-Sided/Visual", 81762905903097) -- Title, Image
+local Tab = Window:CreateTab("Client-Sided/Visual", 77967989411375) -- Title, Image
 
 local Section = Tab:CreateSection("Visual/Client-Sided (More Will be added) ")
 
@@ -1038,7 +1038,7 @@ end
    end,
 })
 
-local Tab = Window:CreateTab("Animations", 120055634852740) -- Title, Image
+local Tab = Window:CreateTab("Animations", 105382227051845) -- Title, Image
 
 local Button = Tab:CreateButton({
    Name = "Sprout AnimationPack",
@@ -1696,7 +1696,7 @@ ensureAnimationsLoop()
    end,
 })
 
-local Tab = Window:CreateTab("other hubs", 105345947222541)
+local Tab = Window:CreateTab("other hubs", 92658304210178)
 
 local Button = Tab:CreateButton({
    Name = "spooks hub",
