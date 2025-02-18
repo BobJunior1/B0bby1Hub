@@ -1099,6 +1099,19 @@ local Toggle = Tab:CreateToggle({
             for _, v in ipairs(game.Workspace:GetDescendants()) do
                 applyESP(v)
             end
+            print("enabled")
+        else
+            -- Remove notifications and clean up connections
+            if Toggle._descendantAddedConnection then
+                Toggle._descendantAddedConnection:Disconnect()
+                Toggle._descendantAddedConnection = nil
+            end
+            if Toggle._descendantRemovingConnection then
+                Toggle._descendantRemovingConnection:Disconnect()
+                Toggle._descendantRemovingConnection = nil
+            end
+            Toggle._isRunning = false
+            print("Notifications removed")
         end
 
         -- Event listeners to apply ESP when new monsters are added or removed
@@ -1116,19 +1129,6 @@ local Toggle = Tab:CreateToggle({
                 end
             end
         end)
-
-        -- If the value is false, stop everything and clean up
-        if not Value then
-            if Toggle._descendantAddedConnection then
-                Toggle._descendantAddedConnection:Disconnect()
-                Toggle._descendantAddedConnection = nil
-            end
-            if Toggle._descendantRemovingConnection then
-                Toggle._descendantRemovingConnection:Disconnect()
-                Toggle._descendantRemovingConnection = nil
-            end
-            Toggle._isRunning = false
-        end
     end,
 })
 
