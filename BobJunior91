@@ -1044,6 +1044,12 @@ local Toggle = Tab:CreateToggle({
     CurrentValue = false,
     Flag = "ToggleMonsterFinder", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
+        -- Check if the script is already running
+        if Toggle._isRunning then
+            return
+        end
+        Toggle._isRunning = true
+
         local monsterNames = {
             "AstroMonster", "BobetteMonster", "BrightneyMonster", "CoalMonster", "ConnieMonster", "CosmoMonster",
             "DandyMonster", "FinnMonster", "FlutterMonster", "GigiMonster", "GingerMonster", "GlistenMonster",
@@ -1081,9 +1087,11 @@ local Toggle = Tab:CreateToggle({
         -- Disconnect any previous event connections if they exist
         if Toggle._descendantAddedConnection then
             Toggle._descendantAddedConnection:Disconnect()
+            Toggle._descendantAddedConnection = nil
         end
         if Toggle._descendantRemovingConnection then
             Toggle._descendantRemovingConnection:Disconnect()
+            Toggle._descendantRemovingConnection = nil
         end
 
         -- Initial application of ESP to existing monsters when notificationsEnabled is true
@@ -1108,6 +1116,19 @@ local Toggle = Tab:CreateToggle({
                 end
             end
         end)
+
+        -- If the value is false, stop everything and clean up
+        if not Value then
+            if Toggle._descendantAddedConnection then
+                Toggle._descendantAddedConnection:Disconnect()
+                Toggle._descendantAddedConnection = nil
+            end
+            if Toggle._descendantRemovingConnection then
+                Toggle._descendantRemovingConnection:Disconnect()
+                Toggle._descendantRemovingConnection = nil
+            end
+            Toggle._isRunning = false
+        end
     end,
 })
 
