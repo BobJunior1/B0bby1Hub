@@ -1078,17 +1078,27 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-        -- Initial application of ESP to existing monsters
-        for _, v in ipairs(game.Workspace:GetDescendants()) do
-            applyESP(v)
+        -- Disconnect any previous event connections if they exist
+        if Toggle._descendantAddedConnection then
+            Toggle._descendantAddedConnection:Disconnect()
+        end
+        if Toggle._descendantRemovingConnection then
+            Toggle._descendantRemovingConnection:Disconnect()
+        end
+
+        -- Initial application of ESP to existing monsters when notificationsEnabled is true
+        if notificationsEnabled then
+            for _, v in ipairs(game.Workspace:GetDescendants()) do
+                applyESP(v)
+            end
         end
 
         -- Event listeners to apply ESP when new monsters are added or removed
-        game.Workspace.DescendantAdded:Connect(function(descendant)
+        Toggle._descendantAddedConnection = game.Workspace.DescendantAdded:Connect(function(descendant)
             applyESP(descendant)
         end)
 
-        game.Workspace.DescendantRemoving:Connect(function(descendant)
+        Toggle._descendantRemovingConnection = game.Workspace.DescendantRemoving:Connect(function(descendant)
             if notificationsEnabled and descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
                 local shortenedName = descendant.Name:gsub("Monster", "M")
                 if table.find(specialMonsters, descendant.Name) then
