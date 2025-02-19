@@ -17,7 +17,7 @@ local Window = Rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = true,
+      Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
       FileName = "Big Hub"
    },
@@ -1874,14 +1874,14 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-   Name = "hex hub",
+   Name = "Iriska hub",
    Callback = function()
-   loadstring(game:HttpGet("https://pastebin.com/raw/N4Y01FkS"))();
+loadstring(game:HttpGet("https://pastebin.com/raw/N4Y01FkS"))();
    end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "glisten's animation closet",
+   Name = "Glisten's Animation Closet",
    Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/RodeStriker/TheDandyHelper/refs/heads/main/GAC"))()
    end,
@@ -1892,3 +1892,11 @@ local Section = Tab:CreateSection("End")
 local Tab = Window:CreateTab("Credits", 92658304210178)
 
 local Label = Tab:CreateLabel("Label Example", Color3.fromRGB(90, 90, 90), false)
+
+local Label = Tab:CreateLabel("Label Example", Color3.fromRGB(90, 90, 90), false)
+
+local Label = Tab:CreateLabel("Iriska Hub: By hex233222", Color3.fromRGB(90, 90, 90), false)
+
+local Label = Tab:CreateLabel("Noxious Hub: ", Color3.fromRGB(90, 90, 90), false)
+
+local Label = Tab:CreateLabel("Glisten's Animation Closet: by Rode Striker", Color3.fromRGB(90, 90, 90), false)
