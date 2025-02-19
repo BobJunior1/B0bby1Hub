@@ -98,7 +98,7 @@ local function createOutline(item)
     else
         Highlight.FillColor = Color3.new(1, 0, 0) -- Red for other monsters
     end
-    Highlight.FillTransparency = 0.8
+    Highlight.FillTransparency = 0.7
 end
 
 local function applyESP(item)
@@ -395,7 +395,7 @@ local Button = Tab:CreateButton({
     Highlight.Parent = item
     Highlight.Adornee = item
     Highlight.OutlineColor = Color3.new(1, 1, 1)
-    Highlight.FillColor = Color3.new(1, 0, 0)
+    Highlight.FillColor = Color3.new(0, 0, 0)
     Highlight.FillTransparency = 0.5
 end
 
