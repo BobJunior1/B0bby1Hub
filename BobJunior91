@@ -1060,6 +1060,102 @@ local Toggle = Tab:CreateToggle({
     end,
 })
 
+local Toggle = Tab:CreateToggle({
+    Name = "ChatGuide: ItemNotification",
+    CurrentValue = false,
+    Flag = "ToggleItemFinder",
+    Callback = function(Value)
+        -- Check if the script is already running
+        if Toggle._isRunning then
+            return
+        end
+        Toggle._isRunning = true
+
+        local rareItems = {
+            "Bandage", "HealthKit", "SmokeBomb", "EjectButton", "Valve",
+            "ChocolateBox", "AirHorn", "EnigmaCandy", "JumperCable", "PopBottle"
+        }
+
+        local allItems = {
+            "Chocolate", "Gumball", "Pop", "ProteinBar", "SpeedCandy", "StealthCandy", "SkillCheckCandy", "EnigmaCandy",
+            "Stopwatch", "Instructions", "Bandage", "ChocolateBox", "PopBottle", "JumperCable", "AirHorn", "SmokeBomb",
+            "HealthKit", "Valve", "EjectButton", "ResearchCapsule", "Tape", "Ornament"
+        }
+
+        local textChatService = game:GetService("TextChatService")
+        local channel = textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+
+        local notificationsEnabled = Value
+
+        local function checkAndSendItemNotifications()
+            local rareItemsFound = false
+            for _, v in ipairs(game.Workspace:GetDescendants()) do
+                if v:IsA('Model') and table.find(rareItems, v.Name) then
+                    rareItemsFound = true
+                    local success, err = pcall(function()
+                        channel:SendAsync("Found: " .. v.Name)
+                    end)
+                    if not success then
+                        warn("Error sending message: " .. err)
+                    end
+                end
+            end
+            if notificationsEnabled then
+                local success, err = pcall(function()
+                    if rareItemsFound then
+                        channel:SendAsync("RareItemsFound: Yes")
+                    else
+                        channel:SendAsync("RareItemsFound: No")
+                    end
+                end)
+                if not success then
+                    warn("Error sending message: " .. err)
+                end
+            end
+        end
+
+        -- Disconnect any previous event connections if they exist
+        if Toggle._descendantAddedConnection then
+            Toggle._descendantAddedConnection:Disconnect()
+            Toggle._descendantAddedConnection = nil
+        end
+        if Toggle._descendantRemovingConnection then
+            Toggle._descendantRemovingConnection:Disconnect()
+            Toggle._descendantRemovingConnection = nil
+        end
+
+        -- Event listeners to check for item notifications when new items are added or removed
+        Toggle._descendantAddedConnection = game.Workspace.DescendantAdded:Connect(function(descendant)
+            checkAndSendItemNotifications()
+        end)
+
+        Toggle._descendantRemovingConnection = game.Workspace.DescendantRemoving:Connect(function(descendant)
+            checkAndSendItemNotifications()
+        end)
+
+        -- Initial check for item notifications when notificationsEnabled is true
+        if notificationsEnabled then
+            checkAndSendItemNotifications()
+            print("enabled")
+        else
+            -- Remove notifications and clean up connections
+            if Toggle._descendantAddedConnection then
+                Toggle._descendantAddedConnection:Disconnect()
+                Toggle._descendantAddedConnection = nil
+            end
+            if Toggle._descendantRemovingConnection then
+                Toggle._descendantRemovingConnection:Disconnect()
+                Toggle._descendantRemovingConnection = nil
+            end
+            Toggle._isRunning = false
+            print("Notifications removed")
+        end
+
+        -- Reset the running state when notifications are disabled
+        Toggle._isRunning = false
+    end,
+})
+
 local Tab = Window:CreateTab("Animations", 105382227051845) -- Title, Image
 
 local Button = Tab:CreateButton({
