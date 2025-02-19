@@ -601,99 +601,15 @@ player.CharacterAdded:Connect(attachTouchEvent)
    end,
 })
 
-local Button = Tab:CreateButton({
-   Name = "float",
-   Callback = function()
-if game.PlaceId == 16116270224 then
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local Toggle = Tab:CreateToggle({
+   Name = "Float",
+   CurrentValue = false,
+   Flag = "ToggleFloat", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   local ToggleEnabled = Value
 
-    -- Create the main frame for the notice box
-    local mainFrame = Instance.new("Frame")
-    mainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Set the anchor point to the center
-    mainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start small
-    mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center position
-    mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    mainFrame.BorderSizePixel = 0
-    mainFrame.Parent = screenGui
-
-    local uiCorner = Instance.new("UICorner")
-    uiCorner.CornerRadius = UDim.new(0, 10)
-    uiCorner.Parent = mainFrame
-
-    -- Tween to grow the main frame
-    local tweenService = game:GetService("TweenService")
-    local tweenInfo = TweenInfo.new(
-        1, -- Time
-        Enum.EasingStyle.Quint, -- EasingStyle
-        Enum.EasingDirection.Out, -- EasingDirection
-        0, -- RepeatCount
-        false, -- Reverses
-        0 -- DelayTime
-    )
-
-    local goal = {}
-    goal.Size = UDim2.new(0.5, 0, 0.5, 0) -- Target size
-
-    local tween = tweenService:Create(mainFrame, tweenInfo, goal)
-    tween:Play()
-
-    -- Create the text label for the notice text
-    local noticeText = Instance.new("TextLabel")
-    noticeText.Size = UDim2.new(1, -20, 1, -40)
-    noticeText.Position = UDim2.new(0, 10, 0, 10)
-    noticeText.BackgroundTransparency = 1
-    noticeText.Text = "Activation of The 'Float' Script Can't be Turned off Only if Reset, Do you still wish to Continue?"
-    noticeText.TextColor3 = Color3.fromRGB(200, 200, 200) -- White text
-    noticeText.TextWrapped = true
-    noticeText.Font = Enum.Font.FredokaOne
-    noticeText.TextSize = 18
-    noticeText.Parent = mainFrame
-
-    -- Create the warning text label
-    local warnText = Instance.new("TextLabel")
-    warnText.Size = UDim2.new(1, -20, 0, 30)
-    warnText.Position = UDim2.new(0, 10, 0, 5)
-    warnText.BackgroundTransparency = 1
-    warnText.Text = "Warning ط·آ£ط¢آ¢ط·آ¹أ¢â‚¬ع© ط·آ£ط¢آ¯ط·آ¢ط¢آ¸ط·آ¹ط«â€ "
-    warnText.TextColor3 = Color3.fromRGB(255, 0, 0) -- Red text for warning
-    warnText.TextWrapped = true
-    warnText.Font = Enum.Font.FredokaOne
-    warnText.TextSize = 22
-    warnText.Parent = mainFrame
-
-    -- Create the 'Ok' button
-    local continueButton = Instance.new("TextButton")
-    continueButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-    continueButton.Position = UDim2.new(0.3, 0, 0.75, 0)
-    continueButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Blue button
-    continueButton.Text = "Continue"
-    continueButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
-    continueButton.Font = Enum.Font.FredokaOne
-    continueButton.TextSize = 18
-    continueButton.Parent = mainFrame
-
-    local uiCorner3 = Instance.new("UICorner")
-    uiCorner3.CornerRadius = UDim.new(0, 10)
-    uiCorner3.Parent = continueButton
-    -- Add functionality to the 'Ok' button
-    continueButton.MouseButton1Click:Connect(function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-
-        -- Fade-out effect
-        for i = 1, 30 do
-            mainFrame.BackgroundTransparency = i/30
-            noticeText.TextTransparency = i/30
-            warnText.TextTransparency = i/30
-            continueButton.BackgroundTransparency = i/30
-            continueButton.TextTransparency = i/30
-            wait(0.033)
-        end
-        screenGui:Destroy()
-    end)
-else
-    local getinfo = getinfo or debug.getinfo
+ if ToggleEnabled then
+local getinfo = getinfo or debug.getinfo
     local DEBUG = false
     local Hooked = {}
 
@@ -768,7 +684,25 @@ else
     -- Set the hip height for the character
     setHipHeight(character, desiredHipHeight)
 end
-    end,
+else
+    -- Define the desired hip height
+    local desiredHipHeight = 1.5
+
+    -- Function to set hip height
+    local function setHipHeight(character, height)
+        if character:FindFirstChild("Humanoid") then
+            character.Humanoid.HipHeight = height
+        end
+    end
+
+    -- Get the player's character
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    -- Set the hip height for the character
+    setHipHeight(character, desiredHipHeight)
+end
+   end,
 })
 
 local Button = Tab:CreateButton({
