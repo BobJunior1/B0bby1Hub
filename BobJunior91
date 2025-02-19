@@ -608,8 +608,8 @@ local Toggle = Tab:CreateToggle({
    Callback = function(Value)
    local ToggleEnabled = Value
 
- if ToggleEnabled then
-local getinfo = getinfo or debug.getinfo
+if ToggleEnabled then
+    local getinfo = getinfo or debug.getinfo
     local DEBUG = false
     local Hooked = {}
 
@@ -621,17 +621,17 @@ local getinfo = getinfo or debug.getinfo
         if typeof(v) == "table" then
             local DetectFunc = rawget(v, "Detected")
             local KillFunc = rawget(v, "Kill")
-        
+
             if typeof(DetectFunc) == "function" and not Detected then
                 Detected = DetectFunc
-                
+
                 local Old; Old = hookfunction(Detected, function(Action, Info, NoCrash)
                     if Action ~= "_" then
                         if DEBUG then
                             warn("Adonis AntiCheat flagged\nMethod: " .. Action .. "\nInfo: " .. Info)
                         end
                     end
-                    
+
                     return true
                 end)
 
@@ -661,45 +661,35 @@ local getinfo = getinfo or debug.getinfo
 
             return coroutine.yield(coroutine.running())
         end
-        
+
         return Old(...)
     end))
-    -- setthreadidentity(9)
     setthreadidentity(7)
 
-    -- Define the desired hip height
     local desiredHipHeight = 5.5
 
-    -- Function to set hip height
     local function setHipHeight(character, height)
         if character:FindFirstChild("Humanoid") then
             character.Humanoid.HipHeight = height
         end
     end
 
-    -- Get the player's character
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
 
-    -- Set the hip height for the character
     setHipHeight(character, desiredHipHeight)
-end
 else
-    -- Define the desired hip height
     local desiredHipHeight = 1.5
 
-    -- Function to set hip height
     local function setHipHeight(character, height)
         if character:FindFirstChild("Humanoid") then
             character.Humanoid.HipHeight = height
         end
     end
 
-    -- Get the player's character
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
 
-    -- Set the hip height for the character
     setHipHeight(character, desiredHipHeight)
 end
    end,
