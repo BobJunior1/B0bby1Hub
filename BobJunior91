@@ -7,7 +7,7 @@ game.StarterGui:SetCore("SendNotification", {
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "î€€ B0bby hub (BETA)",
+   Name = "B0bby hub (BETA)",
    Icon = 99972211610543, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "B0bby hub",
    LoadingSubtitle = "Loading..",
@@ -98,7 +98,7 @@ local function createOutline(item)
     else
         Highlight.FillColor = Color3.new(1, 0, 0) -- Red for other monsters
     end
-    Highlight.FillTransparency = 0.2
+    Highlight.FillTransparency = 0.8
 end
 
 local function applyESP(item)
