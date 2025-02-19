@@ -1063,7 +1063,7 @@ local Toggle = Tab:CreateToggle({
 local Toggle = Tab:CreateToggle({
     Name = "ChatGuide: ItemNotification",
     CurrentValue = false,
-    Flag = "ToggleItemFinder", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "ToggleItemFinder",
     Callback = function(Value)
         -- Check if the script is already running
         if Toggle._isRunning then
@@ -1071,36 +1071,64 @@ local Toggle = Tab:CreateToggle({
         end
         Toggle._isRunning = true
 
-        local itemNames = {
-            "Chocolate", "Gumball", "Pop", "ProteinBar", "SpeedCandy", "StealthCandy", "SkillCheckCandy", "EnigmaCandy",
-            "Stopwatch", "Instructions", "Bandage", "ChocolateBox", "PopBottle", "JumperCable", "AirHorn", "SmokeBomb",
-            "HealthKit", "Valve", "EjectButton", "ResearchCapsule", "Tape", "Ornament"
-        }
-
         local specialItems = {
             "Bandage", "HealthKit", "SmokeBomb", "EjectButton", "Valve",
             "ChocolateBox", "AirHorn", "EnigmaCandy", "JumperCable", "PopBottle"
+        }
+
+        local allItems = {
+            "Chocolate", "Gumball", "Pop", "ProteinBar", "SpeedCandy", "StealthCandy", "SkillCheckCandy", "EnigmaCandy",
+            "Stopwatch", "Instructions", "Bandage", "ChocolateBox", "PopBottle", "JumperCable", "AirHorn", "SmokeBomb",
+            "HealthKit", "Valve", "EjectButton", "ResearchCapsule", "Tape", "Ornament"
         }
 
         local textChatService = game:GetService("TextChatService")
         local channel = textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
 
         local notificationsEnabled = Value -- Set to true to enable notifications, false to disable
+        local itemCounter = 0
 
-        local function sendShortenedItemNameInChat(item)
+        local function sendSpecialItemNameInChat(item)
             if notificationsEnabled then
-                local shortenedName = item.Name
                 if table.find(specialItems, item.Name) then
-                    channel:SendAsync("SpecialItemFound: " .. shortenedName)
-                else
-                    channel:SendAsync("ItemFound: " .. shortenedName)
+                    local success, err = pcall(function()
+                        channel:SendAsync("SpecialItemFound: " .. item.Name)
+                    end)
+                    if not success then
+                        warn("Error sending message: " .. err)
+                    end
                 end
             end
         end
 
+        local function checkRareItems()
+            local rareItemsFound = false
+            for _, v in ipairs(game.Workspace:GetDescendants()) do
+                if v:IsA('Model') and table.find(specialItems, v.Name) then
+                    rareItemsFound = true
+                    break
+                end
+            end
+            local success, err = pcall(function()
+                if rareItemsFound then
+                    channel:SendAsync("RareItemsFound: Yes")
+                else
+                    channel:SendAsync("RareItemsFound: No")
+                end
+            end)
+            if not success then
+                warn("Error sending message: " .. err)
+            end
+        end
+
         local function applyESP(item)
-            if item:IsA('Model') and item.Parent.Name == 'Items' and table.find(itemNames, item.Name) then
-                sendShortenedItemNameInChat(item)
+            if item:IsA('Model') and item.Parent.Name == 'Items' and table.find(allItems, item.Name) then
+                itemCounter = itemCounter + 1
+                sendSpecialItemNameInChat(item)
+                if itemCounter >= 10 then
+                    checkRareItems()
+                    itemCounter = 0
+                end
             end
         end
 
@@ -1141,14 +1169,19 @@ local Toggle = Tab:CreateToggle({
 
         Toggle._descendantRemovingConnection = game.Workspace.DescendantRemoving:Connect(function(descendant)
             if notificationsEnabled and descendant:IsA('Model') and descendant.Parent.Name == 'Items' then
-                local shortenedName = descendant.Name
                 if table.find(specialItems, descendant.Name) then
-                    channel:SendAsync("SpecialItemRemoved: " .. shortenedName)
-                else
-                    channel:SendAsync("ItemRemoved: " .. shortenedName)
+                    local success, err = pcall(function()
+                        channel:SendAsync("SpecialItemRemoved: " .. descendant.Name)
+                    end)
+                    if not success then
+                        warn("Error sending message: " .. err)
+                    end
                 end
             end
         end)
+
+        -- Reset the running state when notifications are disabled
+        Toggle._isRunning = false
     end,
 })
 
