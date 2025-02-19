@@ -1078,57 +1078,77 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
+local Toggle = Tab:CreateToggle({
+    Name = "ChatGuide: MonsterNotification",
+    CurrentValue = false,
+    Flag = "ToggleMonsterFinder",
+    Callback = function(Value)
+        local connections = {}
+        local monsterNames = {
+            "AstroMonster", "BobetteMonster", "BrightneyMonster", "CoalMonster", "ConnieMonster", "CosmoMonster",
+            "DandyMonster", "FinnMonster", "FlutterMonster", "GigiMonster", "GingerMonster", "GlistenMonster",
+            "GoobMonster", "LooeyMonster", "PebbleMonster", "PoppyMonster", "RazzleDazzleMonster", "RodgerMonster",
+            "RudieMonster", "ScrapsMonster", "ShellyMonster", "ShrimpoMonster", "SproutMonster", "TeaganMonster",
+            "TishaMonster", "ToodlesMonster", "VeeMonster", "BoxtenMonster"
+        }
+
+        local specialMonsters = {
+            "ShellyMonster", "SproutMonster", "VeeMonster", "AstroMonster", "BobetteMonster", "DandyMonster", "PebbleMonster"
+        }
+
+        local textChatService = game:GetService("TextChatService")
+        local channel = textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+
+        local function sendShortenedMonsterNameInChat(item, action)
+            local shortenedName = item.Name:gsub("Monster", "M")
+            local message = table.find(specialMonsters, item.Name) and ("MainMonster" .. action .. ": " .. shortenedName) or ("Monster" .. action .. ": " .. shortenedName)
+            channel:SendAsync(message)
+        end
+
         local function applyESP(item)
             if item:IsA('Model') and item.Parent.Name == 'Monsters' and table.find(monsterNames, item.Name) then
-                sendShortenedMonsterNameInChat(item)
+                sendShortenedMonsterNameInChat(item, "Found")
             end
         end
 
-        -- Disconnect any previous event connections if they exist
-        if Toggle._descendantAddedConnection then
-            Toggle._descendantAddedConnection:Disconnect()
-            Toggle._descendantAddedConnection = nil
-        end
-        if Toggle._descendantRemovingConnection then
-            Toggle._descendantRemovingConnection:Disconnect()
-            Toggle._descendantRemovingConnection = nil
-        end
+        if Value then
+            -- If the toggle is on, run the script
+            print("Hello") -- Example of running the script
 
-        -- Initial application of ESP to existing monsters when notificationsEnabled is true
-        if notificationsEnabled then
+            -- Initial detection of existing monsters
             for _, v in ipairs(game.Workspace:GetDescendants()) do
                 applyESP(v)
             end
-            print("enabled")
-        else
-            -- Remove notifications and clean up connections
-            if Toggle._descendantAddedConnection then
-                Toggle._descendantAddedConnection:Disconnect()
-                Toggle._descendantAddedConnection = nil
-            end
-            if Toggle._descendantRemovingConnection then
-                Toggle._descendantRemovingConnection:Disconnect()
-                Toggle._descendantRemovingConnection = nil
-            end
-            Toggle._isRunning = false
-            print("Notifications removed")
-        end
 
-        -- Event listeners to apply ESP when new monsters are added or removed
-        Toggle._descendantAddedConnection = game.Workspace.DescendantAdded:Connect(function(descendant)
-            applyESP(descendant)
-        end)
+            -- Event listeners to apply ESP when new monsters are added or removed
+            table.insert(connections, game.Workspace.DescendantAdded:Connect(function(descendant)
+                applyESP(descendant)
+            end))
 
-        Toggle._descendantRemovingConnection = game.Workspace.DescendantRemoving:Connect(function(descendant)
-            if notificationsEnabled and descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
-                local shortenedName = descendant.Name:gsub("Monster", "M")
-                if table.find(specialMonsters, descendant.Name) then
-                    channel:SendAsync("MainMonsterRemoved: " .. shortenedName)
-                else
-                    channel:SendAsync("MonsterRemoved: " .. shortenedName)
+            table.insert(connections, game.Workspace.DescendantRemoving:Connect(function(descendant)
+                if descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
+                    sendShortenedMonsterNameInChat(descendant, "Removed")
                 end
+            end))
+        else
+            -- If the toggle is off, remove the script's effects
+            print("Toggle off: Cleaning up") -- Example of cleanup
+
+            -- Disconnect all event listeners
+            for _, connection in ipairs(connections) do
+                connection:Disconnect()
             end
-        end)
+            connections = {}
+
+            -- Hypothetical cleanup of chat messages (if possible)
+            -- Note: In Roblox, you typically cannot delete messages from the chat once they're sent.
+            -- This part is hypothetical and would require appropriate permissions and APIs.
+            for _, messageRecord in ipairs(messageHistory) do
+                -- Hypothetical code to remove message from chat (if possible)
+                -- channel:RemoveAsync(messageRecord.message)
+            end
+            messageHistory = {}
+        end
     end,
 })
 
