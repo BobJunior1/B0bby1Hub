@@ -7,7 +7,7 @@ game.StarterGui:SetCore("SendNotification", {
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = " B0bby hub (BETA)",
+   Name = "î€€ B0bby hub (BETA)",
    Icon = 99972211610543, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "B0bby hub",
    LoadingSubtitle = "Loading..",
@@ -469,10 +469,10 @@ local Toggle = Tab:CreateToggle({
         local player = game.Players.LocalPlayer
         local ScreenGui = player:WaitForChild("PlayerGui"):FindFirstChild("ScreenGui")
 
-        -- Declarar conexiط·آ·ط¢آ£ط·آ¢ط¢آ³n fuera de la funciط·آ·ط¢آ£ط·آ¢ط¢آ³n
+        -- Declarar conexiط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n fuera de la funciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n
         if not _G.connection then _G.connection = nil end
 
-        -- Verificaciط·آ·ط¢آ£ط·آ¢ط¢آ³n inicial
+        -- Verificaciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n inicial
         if not ScreenGui then
             warn("ScreenGui not found.")
             return
@@ -492,7 +492,7 @@ local Toggle = Tab:CreateToggle({
         local timeElapsed = 0
         local checkInterval = 0.01
 
-        -- Funciط·آ·ط¢آ£ط·آ¢ط¢آ³n para presionar la tecla espacio
+        -- Funciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n para presionar la tecla espacio
         local function pressSpace()
             if skillCheckFrame.Visible then
                 virtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
@@ -500,7 +500,7 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-        -- Funciط·آ·ط¢آ£ط·آ¢ط¢آ³n para comprobar la posiciط·آ·ط¢آ£ط·آ¢ط¢آ³n de los frames
+        -- Funciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n para comprobar la posiciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n de los frames
         local function checkFramesPosition()
             local frame1X = marker.AbsolutePosition.X
             local frame2X = goldArea.AbsolutePosition.X
@@ -512,7 +512,7 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-        -- Si el toggle estط·آ·ط¢آ£ط·آ·ط¥â€™ activado
+        -- Si el toggle estط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ·ط·آ¥أ¢â‚¬â„¢ activado
         if Value then
             print("AutoSkillcheck: Enabled")
             -- Asegurarse de que no haya conexiones previas
@@ -521,7 +521,7 @@ local Toggle = Tab:CreateToggle({
                 _G.connection = nil
             end
 
-            -- Inicia la verificaciط·آ·ط¢آ£ط·آ¢ط¢آ³n del marcador
+            -- Inicia la verificaciط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n del marcador
             _G.connection = runService.RenderStepped:Connect(function(deltaTime)
                 timeElapsed = timeElapsed + deltaTime
                 if timeElapsed >= checkInterval then
@@ -531,7 +531,7 @@ local Toggle = Tab:CreateToggle({
             end)
         else
             Print("AutoSkillCheck: Disabled")
-            -- Detener la conexiط·آ·ط¢آ£ط·آ¢ط¢آ³n cuando se apaga el toggle
+            -- Detener la conexiط·آ·ط¢آ·ط·آ¢ط¢آ£ط·آ·ط¢آ¢ط·آ¢ط¢آ³n cuando se apaga el toggle
             if _G.connection then
                 _G.connection:Disconnect()
                 _G.connection = nil
@@ -655,7 +655,7 @@ if game.PlaceId == 16116270224 then
     warnText.Size = UDim2.new(1, -20, 0, 30)
     warnText.Position = UDim2.new(0, 10, 0, 5)
     warnText.BackgroundTransparency = 1
-    warnText.Text = "Warning ط£آ¢ط¹â€ک ط£آ¯ط¢آ¸ط¹ث†"
+    warnText.Text = "Warning ط·آ£ط¢آ¢ط·آ¹أ¢â‚¬ع© ط·آ£ط¢آ¯ط·آ¢ط¢آ¸ط·آ¹ط«â€ "
     warnText.TextColor3 = Color3.fromRGB(255, 0, 0) -- Red text for warning
     warnText.TextWrapped = true
     warnText.Font = Enum.Font.FredokaOne
@@ -900,7 +900,7 @@ local toggleEnabled = Value
 if toggleEnabled then
     local notifiedMonsters = {} -- Tabla para rastrear monstruos ya notificados
 
-    -- Funciط·آ£ط¢آ³n para enviar una notificaciط·آ£ط¢آ³n personalizada
+    -- Funciط·آ·ط¢آ£ط·آ¢ط¢آ³n para enviar una notificaciط·آ·ط¢آ£ط·آ¢ط¢آ³n personalizada
     local function sendNotification(monsterName)
         Rayfield:Notify({
    Title = "Alert!",
@@ -934,7 +934,7 @@ if toggleEnabled then
                         -- Revisa los monstruos dentro de Monsters
                         for _, monster in ipairs(monstersFolder:GetChildren()) do
                             if table.find(targetMonsters, monster.Name) and not notifiedMonsters[monster.Name] then
-                                sendNotification(monster.Name) -- Envط·آ£ط¢آ­a la notificaciط·آ£ط¢آ³n personalizada
+                                sendNotification(monster.Name) -- Envط·آ·ط¢آ£ط·آ¢ط¢آ­a la notificaciط·آ·ط¢آ£ط·آ¢ط¢آ³n personalizada
                                 notifiedMonsters[monster.Name] = true -- Marca el monstruo como notificado
                             end
                         end
@@ -942,7 +942,7 @@ if toggleEnabled then
                 end
             end
 
-            -- Limpia los monstruos que ya no estط·آ£ط·إ’n en Monsters
+            -- Limpia los monstruos que ya no estط·آ·ط¢آ£ط·آ·ط¥â€™n en Monsters
             for monsterName, _ in pairs(notifiedMonsters) do
                 local stillExists = false
                 for _, model in ipairs(currentRoom:GetChildren()) do
@@ -953,7 +953,7 @@ if toggleEnabled then
                     end
                 end
                 if not stillExists then
-                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estط·آ£ط·إ’n
+                    notifiedMonsters[monsterName] = nil -- Elimina monstruos que ya no estط·آ·ط¢آ£ط·آ·ط¥â€™n
                 end
             end
 
@@ -998,7 +998,7 @@ if Value then
                     if itemsFolder then
                         for _, item in ipairs(itemsFolder:GetChildren()) do
                             if table.find(targetModels, item.Name) and not notifiedModels[item.Name] then
-                                -- Enviar notificaciط£آ³n
+                                -- Enviar notificaciط·آ£ط¢آ³n
    Rayfield:Notify({
    Title = "Notification",
    Content = "Rare Item/Items Found, Better go Find it!",
@@ -1023,7 +1023,7 @@ if Value then
                     end
                 end
                 if not stillExists then
-                    notifiedModels[modelName] = nil -- Elimina modelos que ya no estط£طŒn
+                    notifiedModels[modelName] = nil -- Elimina modelos que ya no estط·آ£ط·إ’n
                 end
             end
 
@@ -1078,77 +1078,57 @@ local Toggle = Tab:CreateToggle({
             end
         end
 
-local Toggle = Tab:CreateToggle({
-    Name = "ChatGuide: MonsterNotification",
-    CurrentValue = false,
-    Flag = "ToggleMonsterFinder",
-    Callback = function(Value)
-        local connections = {}
-        local monsterNames = {
-            "AstroMonster", "BobetteMonster", "BrightneyMonster", "CoalMonster", "ConnieMonster", "CosmoMonster",
-            "DandyMonster", "FinnMonster", "FlutterMonster", "GigiMonster", "GingerMonster", "GlistenMonster",
-            "GoobMonster", "LooeyMonster", "PebbleMonster", "PoppyMonster", "RazzleDazzleMonster", "RodgerMonster",
-            "RudieMonster", "ScrapsMonster", "ShellyMonster", "ShrimpoMonster", "SproutMonster", "TeaganMonster",
-            "TishaMonster", "ToodlesMonster", "VeeMonster", "BoxtenMonster"
-        }
-
-        local specialMonsters = {
-            "ShellyMonster", "SproutMonster", "VeeMonster", "AstroMonster", "BobetteMonster", "DandyMonster", "PebbleMonster"
-        }
-
-        local textChatService = game:GetService("TextChatService")
-        local channel = textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
-
-        local function sendShortenedMonsterNameInChat(item, action)
-            local shortenedName = item.Name:gsub("Monster", "M")
-            local message = table.find(specialMonsters, item.Name) and ("MainMonster" .. action .. ": " .. shortenedName) or ("Monster" .. action .. ": " .. shortenedName)
-            channel:SendAsync(message)
-        end
-
         local function applyESP(item)
             if item:IsA('Model') and item.Parent.Name == 'Monsters' and table.find(monsterNames, item.Name) then
-                sendShortenedMonsterNameInChat(item, "Found")
+                sendShortenedMonsterNameInChat(item)
             end
         end
 
-        if Value then
-            -- If the toggle is on, run the script
-            print("Hello") -- Example of running the script
+        -- Disconnect any previous event connections if they exist
+        if Toggle._descendantAddedConnection then
+            Toggle._descendantAddedConnection:Disconnect()
+            Toggle._descendantAddedConnection = nil
+        end
+        if Toggle._descendantRemovingConnection then
+            Toggle._descendantRemovingConnection:Disconnect()
+            Toggle._descendantRemovingConnection = nil
+        end
 
-            -- Initial detection of existing monsters
+        -- Initial application of ESP to existing monsters when notificationsEnabled is true
+        if notificationsEnabled then
             for _, v in ipairs(game.Workspace:GetDescendants()) do
                 applyESP(v)
             end
-
-            -- Event listeners to apply ESP when new monsters are added or removed
-            table.insert(connections, game.Workspace.DescendantAdded:Connect(function(descendant)
-                applyESP(descendant)
-            end))
-
-            table.insert(connections, game.Workspace.DescendantRemoving:Connect(function(descendant)
-                if descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
-                    sendShortenedMonsterNameInChat(descendant, "Removed")
-                end
-            end))
+            print("enabled")
         else
-            -- If the toggle is off, remove the script's effects
-            print("Toggle off: Cleaning up") -- Example of cleanup
-
-            -- Disconnect all event listeners
-            for _, connection in ipairs(connections) do
-                connection:Disconnect()
+            -- Remove notifications and clean up connections
+            if Toggle._descendantAddedConnection then
+                Toggle._descendantAddedConnection:Disconnect()
+                Toggle._descendantAddedConnection = nil
             end
-            connections = {}
-
-            -- Hypothetical cleanup of chat messages (if possible)
-            -- Note: In Roblox, you typically cannot delete messages from the chat once they're sent.
-            -- This part is hypothetical and would require appropriate permissions and APIs.
-            for _, messageRecord in ipairs(messageHistory) do
-                -- Hypothetical code to remove message from chat (if possible)
-                -- channel:RemoveAsync(messageRecord.message)
+            if Toggle._descendantRemovingConnection then
+                Toggle._descendantRemovingConnection:Disconnect()
+                Toggle._descendantRemovingConnection = nil
             end
-            messageHistory = {}
+            Toggle._isRunning = false
+            print("Notifications removed")
         end
+
+        -- Event listeners to apply ESP when new monsters are added or removed
+        Toggle._descendantAddedConnection = game.Workspace.DescendantAdded:Connect(function(descendant)
+            applyESP(descendant)
+        end)
+
+        Toggle._descendantRemovingConnection = game.Workspace.DescendantRemoving:Connect(function(descendant)
+            if notificationsEnabled and descendant:IsA('Model') and descendant.Parent.Name == 'Monsters' then
+                local shortenedName = descendant.Name:gsub("Monster", "M")
+                if table.find(specialMonsters, descendant.Name) then
+                    channel:SendAsync("MainMonsterRemoved: " .. shortenedName)
+                else
+                    channel:SendAsync("MonsterRemoved: " .. shortenedName)
+                end
+            end
+        end)
     end,
 })
 
