@@ -1890,3 +1890,4 @@ local Button = Tab:CreateButton({
 local Section = Tab:CreateSection("End")
 
 
+local Label = Tab:CreateLabel("Test(W)", 4483362458, Color3.fromRGB(90, 90, 90), false)
