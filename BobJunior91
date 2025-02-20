@@ -1889,14 +1889,4 @@ local Button = Tab:CreateButton({
 
 local Section = Tab:CreateSection("End")
 
-local Tab = Window:CreateTab("Credits", 92658304210178)
 
-local Label = Tab:CreateLabel("Label Example", Color3.fromRGB(90, 90, 90), false)
-
-local Label = Tab:CreateLabel("Label Example", Color3.fromRGB(90, 90, 90), false)
-
-local Label = Tab:CreateLabel("Iriska Hub: By hex233222", Color3.fromRGB(90, 90, 90), false)
-
-local Label = Tab:CreateLabel("Noxious Hub: ", Color3.fromRGB(90, 90, 90), false)
-
-local Label = Tab:CreateLabel("Glisten's Animation Closet: by Rode Striker", Color3.fromRGB(90, 90, 90), false)
