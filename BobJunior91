@@ -1889,5 +1889,6 @@ local Button = Tab:CreateButton({
 
 local Section = Tab:CreateSection("End")
 
+local Tab = Window:CreateTab("Credits", 92658304210178) -- Title, Image
 
 local Label = Tab:CreateLabel("Test(W)", 4483362458, Color3.fromRGB(90, 90, 90), false)
